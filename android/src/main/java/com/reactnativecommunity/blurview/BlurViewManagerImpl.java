@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.facebook.react.uimanager.ThemedReactContext;
 
 import eightbitlab.com.blurview.BlurView;
-import eightbitlab.com.blurview.RenderEffectBlur;
+// import eightbitlab.com.blurview.RenderEffectBlur;
 import eightbitlab.com.blurview.RenderScriptBlur;
 
 import java.util.Objects;
@@ -29,17 +29,10 @@ class BlurViewManagerImpl {
       .getDecorView();
     ViewGroup rootView = decorView.findViewById(android.R.id.content);
     Drawable windowBackground = decorView.getBackground();
-    if (Build.VERSION.SDK_INT >= 31) {
-      blurView
-        .setupWith(rootView, new RenderEffectBlur())
-        .setFrameClearDrawable(windowBackground)
-        .setBlurRadius(defaultRadius);
-    } else {
-      blurView
-        .setupWith(rootView, new RenderScriptBlur(ctx))
-        .setFrameClearDrawable(windowBackground)
-        .setBlurRadius(defaultRadius);
-    }
+    blurView
+      .setupWith(rootView, new RenderScriptBlur(ctx))
+      .setFrameClearDrawable(windowBackground)
+      .setBlurRadius(defaultRadius);
     return blurView;
   }
 
